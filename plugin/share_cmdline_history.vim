@@ -39,12 +39,12 @@ function! s:define_user_map(map, mode) abort
     endif
 endfunction
 
+" Assumed <SID>(user-:) supports v:count handling.
 call s:define_user_map(':', 'n')
 call s:define_user_map(':', 'x')
-" TODO: [count]
 nnoremap <silent> <SID>(rviminfo) :<C-u>rviminfo<CR>
 xnoremap <silent> <SID>(rviminfo) :<C-u>rviminfo<CR>
-nnoremap <script> : <SID>(rviminfo)<SID>(user-:)
+nnoremap <script><expr> : '<SID>(rviminfo)' . (v:count ==# 0 ? '' : v:count) . '<SID>(user-:)'
 xnoremap <script> : <SID>(rviminfo)gv<SID>(user-:)
 
 call s:define_user_map('<CR>', 'c')
