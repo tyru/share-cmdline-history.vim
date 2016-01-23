@@ -47,10 +47,26 @@ xnoremap <silent> <SID>(rviminfo) :<C-u>rviminfo<CR>
 nnoremap <script><expr> : '<SID>(rviminfo)' . (v:count ==# 0 ? '' : v:count) . '<SID>(user-:)'
 xnoremap <script> : <SID>(rviminfo)gv<SID>(user-:)
 
-call s:define_user_map('<CR>', 'c')
+function! s:wviminfo_later() abort
+    let [s:updatetime, &updatetime] = [&updatetime, 10]
+    augroup share_cmdline_history
+        autocmd!
+        autocmd CursorHold * call s:wviminfo()
+    augroup END
+    return ''
+endfunction
+function! s:wviminfo() abort
+    if exists('s:updatetime')
+        let &updatetime = s:updatetime
+    endif
+    autocmd! share_cmdline_history
+    wviminfo
+endfunction
+
 " Assumed <SID>(user-<CR>) escaped from command-line mode.
-nnoremap <silent> <SID>(wviminfo) :<C-u>wviminfo<CR>
-cnoremap <script> <CR> <C-]><SID>(user-<CR>)<SID>(wviminfo)
+call s:define_user_map('<CR>', 'c')
+cnoremap <silent><expr> <SID>(wviminfo-later) <SID>wviminfo_later()
+cnoremap <script><silent> <CR> <C-]><SID>(wviminfo-later)<SID>(user-<CR>)
 
 
 delfunction s:define_user_map
