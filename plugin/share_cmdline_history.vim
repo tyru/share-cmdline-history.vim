@@ -58,6 +58,7 @@ endfunction
 function! s:wviminfo() abort
     if exists('s:updatetime')
         let &updatetime = s:updatetime
+        unlet s:updatetime
     endif
     autocmd! share_cmdline_history
     wviminfo
