@@ -6,6 +6,16 @@ and executes `:wviminfo` after executing an Ex command.
 
 # Goals
 
-1. [x] Do not override user's mapping in .vimrc
-2. [x] Correct [count] handling
-3. [x] Correct abbreviation expansion
+1. [x] No configuration in .vimrc. Install & work at once
+2. [x] Do not override user's mapping in .vimrc
+  * I'm using this setting in my .vimrc (Enter command-line with `'hlsearch'` and `'ignorecase'` enabled)
+
+```viml
+nnoremap <silent> <SID>(pre-:) :<C-u>setlocal hlsearch<CR>
+xnoremap <silent> <SID>(pre-:) :<C-u>setlocal hlsearch<CR>gv
+nnoremap <script><expr> : '<SID>(pre-:)' . (v:count ==# 0 ? '' : v:count) . ':'
+xnoremap <script>       : <SID>(pre-:)gv:
+```
+
+3. [x] Correct [count] handling
+4. [x] Correct abbreviation expansion
