@@ -8,4 +8,4 @@ and executes `:wviminfo` after executing an Ex command.
 
 1. [x] Do not override user's mapping in .vimrc
 2. [x] Correct [count] handling
-3. [x] Correct abbreviation expansion handling
+3. [x] Correct abbreviation expansion
