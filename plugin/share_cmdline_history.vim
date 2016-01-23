@@ -50,7 +50,7 @@ xnoremap <script> : <SID>(rviminfo)gv<SID>(user-:)
 call s:define_user_map('<CR>', 'c')
 " Assumed <SID>(user-<CR>) escaped from command-line mode.
 nnoremap <silent> <SID>(wviminfo) :<C-u>wviminfo<CR>
-cnoremap <script> <CR> <SID>(user-<CR>)<SID>(wviminfo)
+cnoremap <script> <CR> <C-]><SID>(user-<CR>)<SID>(wviminfo)
 
 
 delfunction s:define_user_map
