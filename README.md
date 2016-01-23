@@ -11,8 +11,8 @@ and executes `:wviminfo` after executing an Ex command.
   * I'm using this setting in my .vimrc (Enter command-line with `'hlsearch'` and `'ignorecase'` enabled)
 
 ```viml
-nnoremap <silent> <SID>(pre-:) :<C-u>setlocal hlsearch<CR>
-xnoremap <silent> <SID>(pre-:) :<C-u>setlocal hlsearch<CR>gv
+nnoremap <silent> <SID>(pre-:) :<C-u>setlocal hlsearch ignorecase<CR>
+xnoremap <silent> <SID>(pre-:) :<C-u>setlocal hlsearch ignorecase<CR>gv
 nnoremap <script><expr> : '<SID>(pre-:)' . (v:count ==# 0 ? '' : v:count) . ':'
 xnoremap <script>       : <SID>(pre-:)gv:
 ```
