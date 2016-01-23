@@ -1,6 +1,6 @@
 # What's this?
 
-This plugin shares command-line history between multiple Vims like bash's 'histappend' option.
+This plugin shares command-line history between multiple Vims like bash's 'histappend' option.<br/>
 It executes `:rviminfo` before entering command-line,
 and executes `:wviminfo` after executing an Ex command.
 
