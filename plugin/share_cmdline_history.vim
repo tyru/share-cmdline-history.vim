@@ -48,6 +48,9 @@ nnoremap <script><expr> : '<SID>(rviminfo)' . (v:count ==# 0 ? '' : v:count) . '
 xnoremap <script> : <SID>(rviminfo)gv<SID>(user-:)
 
 function! s:wviminfo_later() abort
+    if exists('s:updatetime')
+        call s:wviminfo()
+    endif
     let [s:updatetime, &updatetime] = [&updatetime, 50]
     augroup share_cmdline_history
         autocmd!
