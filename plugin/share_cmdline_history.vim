@@ -51,7 +51,7 @@ function! s:wviminfo_later() abort
     let [s:updatetime, &updatetime] = [&updatetime, 10]
     augroup share_cmdline_history
         autocmd!
-        autocmd CursorHold * call s:wviminfo()
+        autocmd CursorHold,CursorMoved * call s:wviminfo()
     augroup END
     return ''
 endfunction
